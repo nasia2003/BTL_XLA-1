@@ -42,14 +42,16 @@ while True:
         if hands:
             # #print(" --------- lmlist=",hands[1])
             hand = hands[0]
-            x, y, w, h = hand['bbox']
+            if len(hand) == 0: continue 
+            x, y, w, h = hand[0]['bbox']
             image = frame[y - offset:y + h + offset, x - offset:x + w + offset]
-            white = cv2.imread("C:\\Users\\devansh raval\\PycharmProjects\\pythonProject\\white.jpg")
+            white = cv2.imread("white.jpg")
             # img_final=img_final1=img_final2=0
             handz = hd2.findHands(image, draw=False, flipType=True)
             if handz:
                 hand = handz[0]
-                pts = hand['lmList']
+                if len(hand) == 0: continue 
+                pts = hand[0]['lmList']
                 # x1,y1,w1,h1=hand['bbox']
 
                 os = ((400 - w) // 2) - 15
